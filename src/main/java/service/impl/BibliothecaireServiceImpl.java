@@ -34,4 +34,9 @@ public class BibliothecaireServiceImpl implements BibliothecaireService {
     public void deleteById(Long id) {
         bibliothecaireRepository.deleteById(id);
     }
+
+    @Override
+    public Bibliothecaire login(String nom, String motDePasse) {
+        return bibliothecaireRepository.findByNomAndMotDePasse(nom, motDePasse);
+    }
 }

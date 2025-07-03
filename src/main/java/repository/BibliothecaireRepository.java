@@ -11,4 +11,5 @@ public interface BibliothecaireRepository {
     Optional<Bibliothecaire> findById(Long id);
     Bibliothecaire save(Bibliothecaire categorie);
     void deleteById(Long id);
+    Bibliothecaire findByNomAndMotDePasse(String nom, String motDePasse);
 }
