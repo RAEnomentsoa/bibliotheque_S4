@@ -1,0 +1,18 @@
+•	Prêter un exemplaire de livre
+•	Prolonger le prêt d’un exemplaire
+•	Payer cotisation d’un adhérent
+•	Pénaliser un adhérent
+•	Statistique :
+◦	nombre d’exemplaire disponible
+◦	nombre d’exemplaire non disponible
+◦	lister les exemplaires disponibles et non disponibles (avec l’adhérent qui l’a prêter avec date retour si c’est non disponible)
+◦	nombre des exemplaires prêt a la maison
+◦	nombre des exemplaires lecture sur place
+◦	liste  des exemplaires prêt a la maison
+◦	liste  des exemplaires en lecture sur place
+NB : Tout ces statistiques sont avec une recherche multicritère :
+▪	recherche avec le nom du livre
+▪	trier les résultat par le nom du livre
+▪	trier les résultat par le nom des adhérent qui l’a prêter
+▪	trier par le date de retour de l’exemplaire
+▪	trier par le date du prêt de l’exemplaire

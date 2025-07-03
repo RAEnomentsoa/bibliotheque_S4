@@ -1,0 +1,301 @@
+/* Star Wars Inspired CSS */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+:root {
+    --sw-yellow: #FFE81F;
+    --sw-blue: #4A90E2;
+    --sw-red: #FF6B6B;
+    --sw-dark: #0D1117;
+    --sw-darker: #010409;
+    --sw-gray: #21262D;
+    --sw-light-gray: #8B949E;
+    --sw-white: #F0F6FC;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, var(--sw-darker) 0%, var(--sw-dark) 50%, #1a1a2e 100%);
+    font-family: 'Orbitron', monospace;
+    color: var(--sw-white);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Effet d'étoiles en arrière-plan */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, var(--sw-white), transparent),
+        radial-gradient(2px 2px at 40px 70px, var(--sw-yellow), transparent),
+        radial-gradient(1px 1px at 90px 40px, var(--sw-white), transparent),
+        radial-gradient(1px 1px at 130px 80px, var(--sw-white), transparent),
+        radial-gradient(2px 2px at 160px 30px, var(--sw-white), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    opacity: 0.6;
+    z-index: -1;
+    animation: twinkle 4s linear infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.3; }
+}
+
+.container {
+    background: rgba(13, 17, 23, 0.9);
+    border-radius: 15px;
+    border: 2px solid var(--sw-yellow);
+    box-shadow: 
+        0 0 30px rgba(255, 232, 31, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--sw-yellow), transparent);
+    animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+h2 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(45deg, var(--sw-yellow), var(--sw-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 232, 31, 0.5);
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--sw-yellow), transparent);
+    margin: 15px auto;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--sw-yellow);
+}
+
+.form-label {
+    color: var(--sw-yellow);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-control, .form-select {
+    background: rgba(33, 38, 45, 0.8);
+    border: 2px solid var(--sw-gray);
+    border-radius: 8px;
+    color: var(--sw-white);
+    padding: 12px 15px;
+    font-family: 'Orbitron', monospace;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.form-control:focus, .form-select:focus {
+    background: rgba(33, 38, 45, 0.95);
+    border-color: var(--sw-yellow);
+    box-shadow: 
+        0 0 0 0.2rem rgba(255, 232, 31, 0.25),
+        0 0 20px rgba(255, 232, 31, 0.3);
+    color: var(--sw-white);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--sw-light-gray);
+    opacity: 0.8;
+}
+
+/* Style pour les options des select */
+.form-select option {
+    background: var(--sw-dark);
+    color: var(--sw-white);
+    border: none;
+}
+
+/* Boutons style Star Wars */
+.btn {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: 2px solid;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--sw-blue), #357ABD);
+    border-color: var(--sw-blue);
+    color: var(--sw-white);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #357ABD, var(--sw-blue));
+    border-color: var(--sw-yellow);
+    box-shadow: 
+        0 4px 20px rgba(74, 144, 226, 0.5),
+        0 0 30px rgba(255, 232, 31, 0.3);
+    transform: translateY(-2px);
+    color: var(--sw-white);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, var(--sw-gray), #363636);
+    border-color: var(--sw-gray);
+    color: var(--sw-white);
+    box-shadow: 0 4px 15px rgba(33, 38, 45, 0.3);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(45deg, #363636, var(--sw-red));
+    border-color: var(--sw-red);
+    box-shadow: 
+        0 4px 20px rgba(255, 107, 107, 0.5),
+        0 0 30px rgba(255, 107, 107, 0.3);
+    transform: translateY(-2px);
+    color: var(--sw-white);
+}
+
+/* Animation pour les inputs */
+.mb-3 {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.mb-3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--sw-yellow);
+    transition: width 0.3s ease;
+}
+
+.mb-3:focus-within::after {
+    width: 100%;
+}
+
+/* Style pour le select multiple */
+select[multiple] {
+    min-height: 120px;
+}
+
+select[multiple] option:checked {
+    background: linear-gradient(0deg, var(--sw-yellow) 0%, rgba(255, 232, 31, 0.3) 100%);
+    color: var(--sw-dark);
+    font-weight: bold;
+}
+
+/* Effet de pulsation pour les éléments importants */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.form-control:invalid {
+    border-color: var(--sw-red);
+    animation: pulse 1s infinite;
+}
+
+/* Media queries pour responsive */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+    
+    .container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation d'apparition */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.mb-3 {
+    animation: fadeInUp 0.8s ease-out;
+    animation-fill-mode: both;
+}
+
+.mb-3:nth-child(1) { animation-delay: 0.1s; }
+.mb-3:nth-child(2) { animation-delay: 0.2s; }
+.mb-3:nth-child(3) { animation-delay: 0.3s; }
+.mb-3:nth-child(4) { animation-delay: 0.4s; }
+.mb-3:nth-child(5) { animation-delay: 0.5s; }

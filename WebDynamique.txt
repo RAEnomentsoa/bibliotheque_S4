@@ -1,0 +1,37 @@
+
+impliment Search proprely in an application:
+-(FULL TEXT INDEXING)
+-ELASTIC SEARCH(API)
+-FULL TEXT IN THE DATABASE
+
+Aona ny implimentena lazy loading.. (chargenend tardif)
+
+lazy loading: tsy alaiko izay tsy ampiasaiko (tokony actif par defaut)
+
+
+structure:
+-PERSISTENCE
+-REPOSITORY
+-ACCEE AU DONNEE
+                                                           ------   
+Web Api: Afaka atsona @ Alalany Url ilay methode,mamerina |"json"|
+                                                           ------  
+---------
+forbiden:|
+---------
+-tsy azi atao ny hoe "MVC ny structureko"
+
+
+
+
+A faire:
+--------
+
+=> construre un app avec Spring MVC:
+    -CRUD: 
+	  >CREATE
+          >UPDATE
+	  >DELETE
+
+entitie: Employer 
+

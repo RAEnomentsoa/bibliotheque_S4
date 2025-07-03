@@ -1,0 +1,48 @@
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\controller\TestController.java:3: error: package org.springframework.ui does not exist
+import org.springframework.ui.Model;
+                             ^
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\controller\TestController.java:4: error: package org.springframework.web.bind.annotation does not exist
+import org.springframework.web.bind.annotation.GetMapping;
+                                              ^
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\controller\TestController.java:5: error: package org.springframework.stereotype does not exist
+import org.springframework.stereotype.Controller;
+                                     ^
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\controller\TestController.java:7: error: cannot find symbol
+@Controller
+ ^
+  symbol: class Controller
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\controller\TestController.java:11: error: cannot find symbol
+    public String hello(Model model){
+                        ^
+  symbol:   class Model
+  location: class TestController
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\test\springweb\springweb\HelloServlet.java:9: error: cannot find symbol
+public class HelloServlet extends HttpServlet {
+                                  ^
+  symbol: class HttpServlet
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\test\springweb\springweb\HelloServlet.java:8: error: cannot find symbol
+@WebServlet(name = "helloServlet", value = "/hello-servlet")
+ ^
+  symbol: class WebServlet
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\test\springweb\springweb\HelloServlet.java:16: error: cannot find symbol
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+                      ^
+  symbol:   class HttpServletRequest
+  location: class HelloServlet
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\test\springweb\springweb\HelloServlet.java:16: error: cannot find symbol
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+                                                  ^
+  symbol:   class HttpServletResponse
+  location: class HelloServlet
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\test\springweb\springweb\HelloServlet.java:5: error: package jakarta.servlet.http does not exist
+import jakarta.servlet.http.*;
+^
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\test\springweb\springweb\HelloServlet.java:6: error: package jakarta.servlet.annotation does not exist
+import jakarta.servlet.annotation.*;
+^
+C:\Users\ttcho\OneDrive\ITU\S4\Servlet\spring-Web(Mr)\src\main\java\controller\TestController.java:10: error: cannot find symbol
+    @GetMapping("/hello")
+     ^
+  symbol:   class GetMapping
+  location: class TestController
+12 errors
