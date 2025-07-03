@@ -2,6 +2,7 @@ package repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import model.Bibliothecaire;
 import org.springframework.stereotype.Repository;
 import repository.BibliothecaireRepository;
@@ -42,5 +43,14 @@ public class BibliothecaireRepositoryImpl implements BibliothecaireRepository {
         if (bibliothecaire != null) {
             entityManager.remove(bibliothecaire);
         }
+    }
+
+    @Override
+    public Bibliothecaire findByNomAndMotDePasse(String nom, String motDePasse) {
+        TypedQuery<Bibliothecaire> query = entityManager.createQuery(
+            "SELECT b FROM Bibliothecaire b WHERE b.nom = :nom AND b.motDePasse = :motDePasse", Bibliothecaire.class);
+        query.setParameter("nom", nom);
+        query.setParameter("motDePasse", motDePasse);
+        return query.getResultStream().findFirst().orElse(null);
     }
 }

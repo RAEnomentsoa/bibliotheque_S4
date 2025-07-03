@@ -12,4 +12,6 @@ public interface BibliothecaireService {
     Bibliothecaire save(Bibliothecaire bibliothecaire);
 
     void deleteById(Long id);
+
+    Bibliothecaire login(String nom, String motDePasse);
 }
