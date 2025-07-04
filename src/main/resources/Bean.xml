@@ -23,6 +23,10 @@
     <property name="username" value="root"/>
     <property name="password" value=""/>
 </bean>
+    <!-- JdbcTemplate configuration -->
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
     <!-- EntityManagerFactory -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -47,6 +51,9 @@
     <!-- Enable transaction annotations -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    
+<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
     <!-- Repository Beans -->
     <bean id="bibliothecaireRepository" class="repository.impl.BibliothecaireRepositoryImpl"/>
     <bean id="livreRepository" class="repository.impl.LivreRepositoryImpl"/>
@@ -63,7 +70,6 @@
     <bean id="penaliteRepository" class="repository.impl.PenaliteRepositoryImpl"/>
     <bean id="jourFerieRepository" class="repository.impl.JourFerieRepositoryImpl"/>
     <bean id="jourOuvrableRepository" class="repository.impl.JourOuvrableRepositoryImpl"/>
-
     <!-- Service Beans -->
     <bean id="bibliothecaireService" class="service.impl.BibliothecaireServiceImpl"/>
     <bean id="livreService" class="service.impl.LivreServiceImpl"/>
@@ -80,4 +86,6 @@
     <bean id="penaliteService" class="service.impl.PenaliteServiceImpl"/>
     <bean id="jourFerieService" class="service.impl.JourFerieServiceImpl"/>
     <bean id="jourOuvrableService" class="service.impl.JourOuvrableServiceImpl"/>
+    
+
 </beans>
