@@ -6,7 +6,8 @@ import java.util.Optional;
 
 public interface AdherentRepository {
     List<Adherent> findAll();
-    Optional<Adherent> findById(Long id);
+    Optional<Adherent> findById(int id);
     Adherent save(Adherent adherent);
-    void deleteById(Long id);
+    void deleteById(int id);
+    boolean existsByEmail(String email);
 }

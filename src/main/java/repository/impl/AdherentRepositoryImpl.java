@@ -21,7 +21,7 @@ public class AdherentRepositoryImpl implements AdherentRepository {
     }
 
     @Override
-    public Optional<Adherent> findById(Long id) {
+    public Optional<Adherent> findById(int id) {
         Adherent adherent = entityManager.find(Adherent.class, id);
         return Optional.ofNullable(adherent);
     }
@@ -37,10 +37,20 @@ public class AdherentRepositoryImpl implements AdherentRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         Adherent adherent = entityManager.find(Adherent.class, id);
         if (adherent != null) {
             entityManager.remove(adherent);
         }
     }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        Long count = entityManager.createQuery("SELECT COUNT(a) FROM Adherent a WHERE a.email = :email", Long.class)
+                .setParameter("email", email)
+                .getSingleResult();
+        return count > 0;
+    }
+
+
 }

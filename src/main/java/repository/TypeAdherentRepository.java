@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface TypeAdherentRepository {
     List<TypeAdherent> findAll();
-    Optional<TypeAdherent> findById(Long id);
+    Optional<TypeAdherent> findById(int id);
     TypeAdherent save(TypeAdherent typeAdherent);
-    void deleteById(Long id);
+    void deleteById(int id);
 }

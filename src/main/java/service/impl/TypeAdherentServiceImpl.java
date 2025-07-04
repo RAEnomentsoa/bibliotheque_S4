@@ -21,7 +21,7 @@ public class TypeAdherentServiceImpl implements TypeAdherentService {
     }
 
     @Override
-    public Optional<TypeAdherent> findById(Long id) {
+    public Optional<TypeAdherent> findById(int id) {
         return typeAdherentRepository.findById(id);
     }
 
@@ -31,7 +31,7 @@ public class TypeAdherentServiceImpl implements TypeAdherentService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         typeAdherentRepository.deleteById(id);
     }
 }

@@ -19,9 +19,9 @@ public class Adherent {
     @Column(name = "mot_de_passe", nullable = false)
     private String motDePasse;
 
-    @ManyToOne
-    @JoinColumn(name = "type_id", nullable = false)
-    private TypeAdherent typeAdherent;
+    
+    @Column(name = "type_id", nullable = false)
+    private Integer typeAdherent;
 
     @Column(name = "date_naissance", nullable = false)
     private LocalDate dateNaissance;
@@ -35,8 +35,8 @@ public class Adherent {
     public void setEmail(String email) { this.email = email; }
     public String getMotDePasse() { return motDePasse; }
     public void setMotDePasse(String motDePasse) { this.motDePasse = motDePasse; }
-    public TypeAdherent getTypeAdherent() { return typeAdherent; }
-    public void setTypeAdherent(TypeAdherent typeAdherent) { this.typeAdherent = typeAdherent; }
+    public Integer getTypeAdherent() { return typeAdherent; }
+    public void setTypeAdherent(Integer typeAdherent) { this.typeAdherent = typeAdherent; }
     public LocalDate getDateNaissance() { return dateNaissance; }
     public void setDateNaissance(LocalDate dateNaissance) { this.dateNaissance = dateNaissance; }
 }

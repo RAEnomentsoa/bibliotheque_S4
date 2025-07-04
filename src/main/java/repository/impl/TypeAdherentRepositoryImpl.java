@@ -21,7 +21,7 @@ public class TypeAdherentRepositoryImpl implements TypeAdherentRepository {
     }
 
     @Override
-    public Optional<TypeAdherent> findById(Long id) {
+    public Optional<TypeAdherent> findById(int id) {
         TypeAdherent typeAdherent = entityManager.find(TypeAdherent.class, id);
         return Optional.ofNullable(typeAdherent);
     }
@@ -37,7 +37,7 @@ public class TypeAdherentRepositoryImpl implements TypeAdherentRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         TypeAdherent typeAdherent = entityManager.find(TypeAdherent.class, id);
         if (typeAdherent != null) {
             entityManager.remove(typeAdherent);
