@@ -3,6 +3,8 @@ package service.impl;
 import model.Adherent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 import repository.AdherentRepository;
 import service.AdherentService;
 
@@ -26,6 +28,7 @@ public class AdherentServiceImpl implements AdherentService {
     }
 
     @Override
+    @Transactional
     public Adherent save(Adherent adherent) {
         return adherentRepository.save(adherent);
     }
@@ -34,4 +37,11 @@ public class AdherentServiceImpl implements AdherentService {
     public void deleteById(Long id) {
         adherentRepository.deleteById(id);
     }
+
+    @Override
+public Adherent findByEmailAndPassword(String email, String motDePasse) {
+    return adherentRepository.findByEmailAndMotDePasse(email, motDePasse);
+}
+
+
 }

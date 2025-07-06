@@ -9,4 +9,6 @@ public interface AdherentRepository {
     Optional<Adherent> findById(Long id);
     Adherent save(Adherent adherent);
     void deleteById(Long id);
+    Adherent findByEmailAndMotDePasse(String email, String motDePasse);
+
 }
