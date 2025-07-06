@@ -9,4 +9,5 @@ public interface AbonnementRepository {
     Optional<Abonnement> findById(Long id);
     Abonnement save(Abonnement abonnement);
     void deleteById(Long id);
+    Abonnement findActifByAdherentId(Integer adherentId);
 }

@@ -2,10 +2,12 @@ package repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import model.Abonnement;
 import org.springframework.stereotype.Repository;
 import repository.AbonnementRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,4 +45,22 @@ public class AbonnementRepositoryImpl implements AbonnementRepository {
             entityManager.remove(abonnement);
         }
     }
+
+  @Override
+public Abonnement findActifByAdherentId(Integer adherentId) {
+    //mijery hoe abonne ve izy
+    String jpql = """
+        SELECT a FROM Abonnement a
+        WHERE a.adherent.id = :adherentId
+          AND :today BETWEEN a.dateDebut AND a.dateFin
+    """;
+
+    TypedQuery<Abonnement> query = entityManager.createQuery(jpql, Abonnement.class);
+    query.setParameter("adherentId", adherentId);
+    query.setParameter("today", LocalDate.now()); 
+
+    List<Abonnement> result = query.getResultList();
+    return result.isEmpty() ? null : result.get(0);
+}
+
 }

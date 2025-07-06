@@ -1,7 +1,9 @@
 package controller;
 
 import model.Adherent;
+import service.AbonnementService;
 import service.AdherentService;
+import service.ReservationService;
 import service.TypeAdherentService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,12 @@ public class AdherentController {
 
     @Autowired
     private TypeAdherentService typeAdherentService;
+
+     @Autowired
+    private ReservationService reservationService;
+
+    @Autowired
+    private AbonnementService abonnementService;
 
 @GetMapping("/ShowInscription")
 public String showInscriptionForm(Model model) {
@@ -47,7 +55,7 @@ public String showInscriptionForm(Model model) {
 
         if (a != null) {
             session.setAttribute("adherentConnecte", a);
-            return "adherent/accueil";
+            return "redirect:/adherent/livres";
         } else {
             model.addAttribute("error", "Email ou mot de passe incorrect !");
             return "adherent/login";
