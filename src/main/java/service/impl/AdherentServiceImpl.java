@@ -23,7 +23,7 @@ public class AdherentServiceImpl implements AdherentService {
     }
 
     @Override
-    public Optional<Adherent> findById(Long id) {
+    public Optional<Adherent> findById(int id) {
         return adherentRepository.findById(id);
     }
 

@@ -21,7 +21,7 @@ public class TypePretRepositoryImpl implements TypePretRepository {
     }
 
     @Override
-    public Optional<TypePret> findById(Long id) {
+    public Optional<TypePret> findById(int id) {
         TypePret typePret = entityManager.find(TypePret.class, id);
         return Optional.ofNullable(typePret);
     }

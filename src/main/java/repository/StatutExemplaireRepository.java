@@ -6,7 +6,8 @@ import java.util.Optional;
 
 public interface StatutExemplaireRepository {
     List<StatutExemplaire> findAll();
-    Optional<StatutExemplaire> findById(Long id);
+    Optional<StatutExemplaire> findById(int id);
     StatutExemplaire save(StatutExemplaire statutExemplaire);
     void deleteById(Long id);
+    List<StatutExemplaire> findByEtatExemplaireLibelle(String libelle);
 }

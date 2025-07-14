@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface TypePretRepository {
     List<TypePret> findAll();
-    Optional<TypePret> findById(Long id);
+    Optional<TypePret> findById(int id);
     TypePret save(TypePret typePret);
     void deleteById(Long id);
 }

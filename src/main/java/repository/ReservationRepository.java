@@ -9,4 +9,6 @@ public interface ReservationRepository {
     Optional<Reservation> findById(Long id);
     Reservation save(Reservation reservation);
     void deleteById(Long id);
+    Reservation findFirstByExemplaireId(Integer exemplaireId);
+    Optional<Reservation> findFirstByExemplaireIdOrderByDateReservationDesc(Integer exemplaireId);
 }

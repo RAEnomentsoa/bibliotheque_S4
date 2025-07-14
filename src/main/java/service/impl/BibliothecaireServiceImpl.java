@@ -21,7 +21,7 @@ public class BibliothecaireServiceImpl implements BibliothecaireService {
     }
 
     @Override
-    public Optional<Bibliothecaire> findById(Long id) {
+    public Optional<Bibliothecaire> findById(int id) {
         return bibliothecaireRepository.findById(id);
     }
 

@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface BibliothecaireService {
     List<Bibliothecaire> findAll();
 
-    Optional<Bibliothecaire> findById(Long id);
+    Optional<Bibliothecaire> findById(int id);
 
     Bibliothecaire save(Bibliothecaire bibliothecaire);
 

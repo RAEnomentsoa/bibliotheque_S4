@@ -21,7 +21,7 @@ public class ExemplaireRepositoryImpl implements ExemplaireRepository {
     }
 
     @Override
-    public Optional<Exemplaire> findById(Long id) {
+    public Optional<Exemplaire> findById(int id) {
         Exemplaire exemplaire = entityManager.find(Exemplaire.class, id);
         return Optional.ofNullable(exemplaire);
     }

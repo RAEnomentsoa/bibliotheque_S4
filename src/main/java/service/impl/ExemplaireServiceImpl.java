@@ -21,7 +21,7 @@ public class ExemplaireServiceImpl implements ExemplaireService {
     }
 
     @Override
-    public Optional<Exemplaire> findById(Long id) {
+    public Optional<Exemplaire> findById(int id) {
         return exemplaireRepository.findById(id);
     }
 

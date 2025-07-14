@@ -111,3 +111,13 @@ CREATE TABLE JourOuvrable (
     id INT PRIMARY KEY AUTO_INCREMENT,
     jour_semaine VARCHAR(15) NOT NULL -- Ex: 'Lundi', 'Mardi', ...
 );
+
+-- must impliment
++----+------------+
+| id | libelle    |
++----+------------+
+|  1 | libre      |
+|  2 | emprunté   |
+|  3 | réservé    |
+|  4 | en_attente |
++----+------------+

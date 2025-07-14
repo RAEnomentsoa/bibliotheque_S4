@@ -2,6 +2,7 @@ package repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import model.StatutExemplaire;
 import org.springframework.stereotype.Repository;
 import repository.StatutExemplaireRepository;
@@ -21,7 +22,7 @@ public class StatutExemplaireRepositoryImpl implements StatutExemplaireRepositor
     }
 
     @Override
-    public Optional<StatutExemplaire> findById(Long id) {
+    public Optional<StatutExemplaire> findById(int id) {
         StatutExemplaire statutExemplaire = entityManager.find(StatutExemplaire.class, id);
         return Optional.ofNullable(statutExemplaire);
     }
@@ -43,4 +44,23 @@ public class StatutExemplaireRepositoryImpl implements StatutExemplaireRepositor
             entityManager.remove(statutExemplaire);
         }
     }
+
+        @Override
+    public List<StatutExemplaire> findByEtatExemplaireLibelle(String libelle) {
+        String jpql = "SELECT se FROM StatutExemplaire se " +
+                    "WHERE se.id IN (" +
+                    "  SELECT MAX(s2.id) " +
+                    "  FROM StatutExemplaire s2 " +
+                    "  GROUP BY s2.exemplaire.id" +
+                    ") " +
+                    "AND se.etatExemplaire.libelle = :libelle";
+
+        TypedQuery<StatutExemplaire> query = entityManager.createQuery(jpql, StatutExemplaire.class);
+        query.setParameter("libelle", libelle);
+        return query.getResultList();
+    }
+
 }
+
+        
+    
