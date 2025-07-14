@@ -2,18 +2,42 @@ package model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+@Entity
+@Table(name = "pret")
 public class Pret {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "adherent_id")
     private Adherent adherent;
+
+    @ManyToOne
     private Exemplaire exemplaire;
+
+    @Column(name = "date_pret", nullable = false)
     private LocalDate datePret;
+
+    @Column(name = "date_retour")
     private LocalDate dateRetour;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
     private TypePret typePret;
 
     public Pret() {}
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Integer getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     public Adherent getAdherent() { return adherent; }
     public void setAdherent(Adherent adherent) { this.adherent = adherent; }

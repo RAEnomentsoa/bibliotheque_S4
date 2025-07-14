@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import service.BibliothecaireService;
 import service.ReservationService;
 import service.StatutExemplaireService;
@@ -177,31 +178,45 @@ public String preterExemplaire(@RequestParam("exemplaireId") Integer id) {
 
 // gestion de pret
 @GetMapping("/prets/nouveau")
-public String afficherFormulairePret(@RequestParam Integer adherentId, @RequestParam Integer exemplaireId, Model model) {
+public String afficherFormulairePret(
+        @RequestParam("adherentId") Integer adherentId,
+        @RequestParam("exemplaireId") Integer exemplaireId,
+        Model model) {
+    
     model.addAttribute("adherentId", adherentId);
     model.addAttribute("exemplaireId", exemplaireId);
     model.addAttribute("typesPret", typePretRepository.findAll());
     model.addAttribute("now", LocalDate.now());
-    return "prets/formulaire_pret";
+    System.out.println("Types de prêt : " + typePretRepository.findAll().size());
+    
+    return "bibliothecaires/formulaire_pret";
 }
 
+
 @PostMapping("/prets/ajouter")
+@Transactional
 public String enregistrerPret(
-        @RequestParam Integer adherentId,
-        @RequestParam Integer exemplaireId,
-        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate datePret,
-        @RequestParam Integer typeId) {
+   @RequestParam("adherentId") Integer adherentId,
+        @RequestParam("exemplaireId") Integer exemplaireId,
+        @RequestParam("datePret") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate datePret,
+        @RequestParam("typeId") Integer typePretId) {
 
     Pret pret = new Pret();
-    pret.setAdherent(adherentRepository.findById(adherentId).orElseThrow());
-    pret.setExemplaire(exemplaireRepository.findById(exemplaireId).orElseThrow());
+    pret.setAdherent(adherentRepository.findById(adherentId)
+            .orElseThrow(() -> new IllegalArgumentException("Adhérent introuvable")));
+    pret.setExemplaire(exemplaireRepository.findById(exemplaireId)
+            .orElseThrow(() -> new IllegalArgumentException("Exemplaire introuvable")));
     pret.setDatePret(datePret);
-    pret.setTypePret(typePretRepository.findById(typeId).orElseThrow());
+    pret.setTypePret(typePretRepository.findById(typePretId)
+            .orElseThrow(() -> new IllegalArgumentException("Type de prêt introuvable")));
 
     pretRepository.save(pret);
+
+    // Mettre à jour le statut de l'exemplaire
     statutExemplaireService.mettreAJourStatut(exemplaireId, "prêté");
 
-    return "redirect:/prets/liste"; // Ou autre page de confirmation
+    // Redirection vers la liste ou confirmation
+    return "redirect:/bibliothecaires/exemplaires-reserves";
 }
 
 

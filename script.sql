@@ -120,4 +120,5 @@ CREATE TABLE JourOuvrable (
 |  2 | emprunté   |
 |  3 | réservé    |
 |  4 | en_attente |
+|  5 | prêté      |
 +----+------------+

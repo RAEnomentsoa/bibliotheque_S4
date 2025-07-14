@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface PretRepository {
     List<Pret> findAll();
-    Optional<Pret> findById(Long id);
+    Optional<Pret> findById(int id);
     Pret save(Pret pret);
     void deleteById(Long id);
 }
