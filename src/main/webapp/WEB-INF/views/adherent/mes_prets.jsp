@@ -111,6 +111,7 @@
             <th>Date de prêt</th>
             <th>Date de retour</th>
             <th>Actions</th>
+            <th>prolongement</th>
         </tr>
         <c:forEach var="pret" items="${prets}">
             <tr>
@@ -142,6 +143,20 @@
                         </c:otherwise>
                     </c:choose>
                 </td>
+                <td>
+                    <c:choose>
+                        <c:when test="${empty pret.dateRetour}">
+                            <form action="${pageContext.request.contextPath}/adherent/ajouter/prolongement" method="post">
+                                <input type="hidden" name="pretId" value="${pret.id}" />
+                                 <input type="date" name="ProlongementDate" value="${now}" />
+                                
+                                <button type="submit">Prolonger</button>
+                            </form>
+                        </c:when>
+                        <c:otherwise>
+                            <span style="color:green;">Déjà retourné</span>
+                        </c:otherwise>
+                    </c:choose>
             </tr>
         </c:forEach>
     </table>

@@ -68,4 +68,15 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     List<Reservation> resultList = query.getResultList();
     return resultList.isEmpty() ? Optional.empty() : Optional.of(resultList.get(0));
     }
+
+    @Override
+public boolean existsByExemplaireIdAndDateReservationAfter(Integer exemplaireId, java.time.LocalDate date) {
+    Long count = entityManager.createQuery(
+        "SELECT COUNT(r) FROM Reservation r WHERE r.exemplaire.id = :exemplaireId AND r.dateReservation > :date",
+        Long.class)
+        .setParameter("exemplaireId", exemplaireId)
+        .setParameter("date", date)
+        .getSingleResult();
+    return count > 0;
+}
 }
