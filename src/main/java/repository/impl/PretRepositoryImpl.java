@@ -45,4 +45,10 @@ public class PretRepositoryImpl implements PretRepository {
             entityManager.remove(pret);
         }
     }
+    @Override
+    public List<Pret> findByAdherentId(int adherentId) {
+        return entityManager.createQuery("SELECT p FROM Pret p WHERE p.adherent.id = :adherentId", Pret.class)
+                .setParameter("adherentId", adherentId)
+                .getResultList();
+    }
 }

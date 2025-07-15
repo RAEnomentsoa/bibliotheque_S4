@@ -9,4 +9,5 @@ public interface PretRepository {
     Optional<Pret> findById(int id);
     Pret save(Pret pret);
     void deleteById(Long id);
+    List<Pret> findByAdherentId(int adherentId);
 }

@@ -6,6 +6,7 @@ import model.JourFerie;
 import org.springframework.stereotype.Repository;
 import repository.JourFerieRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,5 +43,15 @@ public class JourFerieRepositoryImpl implements JourFerieRepository {
         if (jourFerie != null) {
             entityManager.remove(jourFerie);
         }
+    }
+
+    
+    @Override
+    public boolean existsByDateFerie(LocalDate dateFerie) {
+        String jpql = "SELECT COUNT(j) FROM JourFerie j WHERE j.dateFerie = :date";
+        Long count = entityManager.createQuery(jpql, Long.class)
+                                  .setParameter("date", dateFerie)
+                                  .getSingleResult();
+        return count != null && count > 0;
     }
 }

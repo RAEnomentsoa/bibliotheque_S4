@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import service.BibliothecaireService;
 import service.ReservationService;
 import service.StatutExemplaireService;
@@ -28,48 +29,44 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/prets")
+@RequestMapping("/adherent")
 public class PretController {
 
     @Autowired
-    private PretRepository pretRepository;
+
+    private service.PretService pretService;
 
     @Autowired
-    private AdherentRepository adherentRepository;
+    private StatutExemplaireService statutExemplaireService;
 
-    @Autowired
-    private ExemplaireRepository exemplaireRepository;
-
-    @Autowired
-    private TypePretRepository typePretRepository;
-
-    @PostMapping("/new")
-    public String creerPret(
-            @RequestParam("adherentId") int adherentId,
-            @RequestParam("exemplaireId") int exemplaireId,
-            @RequestParam(value = "typePretId", required = true) int typePretId,
-            @RequestParam(value = "dateRetour", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateRetour,
-            @RequestParam(value = "datePret", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate datePret,
-            Model model) {
-
-        Optional<model.Adherent> adherentOpt = adherentRepository.findById(adherentId);
-        Optional<model.Exemplaire> exemplaireOpt = exemplaireRepository.findById(exemplaireId);
-
-        if (adherentOpt.isPresent() && exemplaireOpt.isPresent()) {
-            model.Pret pret = new model.Pret();
-            pret.setAdherent(adherentOpt.get());
-            pret.setExemplaire(exemplaireOpt.get());
-            pret.setDatePret(datePret);
-            pret.setDateRetour(dateRetour);
-            // Set typePret if needed, e.g. default to id=1
-            pret.setTypePret(typePretRepository.findById(typePretId).orElse(null));
-
-            pretRepository.save(pret);
-            model.addAttribute("message", "Prêt enregistré avec succès !");
-        } else {
-            model.addAttribute("error", "Adhérent ou exemplaire introuvable.");
-        }
-
-        return "redirect:/bibliothecaires/exemplaires_reserves";
+@GetMapping("/mes-prets")
+public String afficherLivresEmpruntes(HttpSession session, Model model) {
+    Adherent adherent = (Adherent) session.getAttribute("adherentConnecte");
+    if (adherent == null) {
+        return "redirect:/adherent/ShowloginAdherent";
     }
+    List<model.Pret> prets = pretService.findPretsByAdherentId(adherent.getId());
+    model.addAttribute("prets", prets);
+    return "adherent/mes_prets"; // Crée ce JSP pour afficher la liste
+}
+
+@PostMapping("/prets/retourner")
+@Transactional
+public String retournerPret(
+        @RequestParam("pretId") Integer pretId,
+        @RequestParam("exemplaireId") Integer exemplaireId,
+        @RequestParam("adherentId") Integer adherentId,
+        @RequestParam("dateRetour") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateRetour) {
+
+    
+       boolean retour= pretService.retournerPret(pretId, adherentId, exemplaireId, dateRetour);
+    if (retour == true) {
+        //test if retour valide
+        System.out.println("retour acheived");
+    return "redirect:/adherent/mes_prets" + adherentId;
+    
+    }
+   return "redirect:/adherent/mes_prets" + adherentId;
+}
+
 }
