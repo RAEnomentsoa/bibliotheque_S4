@@ -3,6 +3,7 @@
 
 <html>
 <head>
+
     <title>📊 Tableau de Bord - Bibliothèque</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -278,6 +279,7 @@
     </style>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/navbar_admin.jsp" %>
     <div class="floating-elements"></div>
     
     <div class="header">

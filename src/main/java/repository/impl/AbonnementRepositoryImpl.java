@@ -3,6 +3,7 @@ package repository.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import model.Abonnement;
 import org.springframework.stereotype.Repository;
 import repository.AbonnementRepository;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional
 public class AbonnementRepositoryImpl implements AbonnementRepository {
 
     @PersistenceContext

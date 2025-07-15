@@ -12,6 +12,7 @@ import repository.AbonnementRepository;
 import repository.LivreRepository;
 import repository.ReservationRepository;
 import service.ReservationService;
+import service.StatutExemplaireService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,6 +26,9 @@ public class ReservationServiceImpl implements ReservationService {
 
      @Autowired
     private LivreRepository livreRepository;
+
+    @Autowired
+    private StatutExemplaireService statutExemplaireService;
 
      @Autowired
     private AbonnementRepository abonnementRepository;
@@ -101,6 +105,8 @@ public boolean reserverExemplairePourAdherent(Integer exemplaireId, Adherent adh
     reservation.setDateReservation(LocalDate.now());
 
     reservationRepository.save(reservation);
+
+     statutExemplaireService.mettreAJourStatut(exemplaireId, "en_attente");
     return true;
 }
 
