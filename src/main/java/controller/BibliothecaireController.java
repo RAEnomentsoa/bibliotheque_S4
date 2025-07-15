@@ -3,10 +3,12 @@ package controller;
 import model.Adherent;
 import model.Bibliothecaire;
 import model.Pret;
+import model.Prolongement;
 import model.StatutExemplaire;
 import repository.AdherentRepository;
 import repository.ExemplaireRepository;
 import repository.PretRepository;
+import repository.ProlongementRepository;
 import repository.ReservationRepository;
 import repository.TypePretRepository;
 
@@ -55,6 +57,9 @@ public class BibliothecaireController {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private ProlongementRepository prolongementRepository;
 
 
 
@@ -218,6 +223,26 @@ public String enregistrerPret(
     // Redirection vers la liste ou confirmation
     return "redirect:/bibliothecaires/exemplaires-reserves";
 }
+
+   @PostMapping("/ajouter/prolongement")
+    public String enregistrerProlongement(
+            @RequestParam("pretId") Integer pretId,
+            @RequestParam("nouvelleDateRetour") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate nouvelleDateRetour) {
+
+        Optional<Pret> pretOpt = pretRepository.findById(pretId);
+        if (pretOpt.isPresent()) {
+            Pret pret = pretOpt.get();
+            Prolongement prolongement = new Prolongement();
+            prolongement.setPret(pret);
+            prolongementRepository.save(prolongement);
+
+            // Mettre à jour la date de retour du prêt
+            pret.setDateRetour(nouvelleDateRetour);
+            pretRepository.save(pret);
+        }
+        return "redirect:/adherent/mes-prets";
+    }
+
 
 
    

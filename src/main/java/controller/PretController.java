@@ -3,10 +3,12 @@ package controller;
 import model.Adherent;
 import model.Bibliothecaire;
 import model.Pret;
+import model.Prolongement;
 import model.StatutExemplaire;
 import repository.AdherentRepository;
 import repository.ExemplaireRepository;
 import repository.PretRepository;
+import repository.ProlongementRepository;
 import repository.ReservationRepository;
 import repository.TypePretRepository;
 
@@ -39,6 +41,18 @@ public class PretController {
     @Autowired
     private StatutExemplaireService statutExemplaireService;
 
+    @Autowired
+    private ProlongementRepository prolongementRepository;
+
+    @Autowired
+    private PretRepository pretRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
+
+    @Autowired
+    private service.AbonnementService abonnementService;
+
 @GetMapping("/mes-prets")
 public String afficherLivresEmpruntes(HttpSession session, Model model) {
     Adherent adherent = (Adherent) session.getAttribute("adherentConnecte");
@@ -68,5 +82,40 @@ public String retournerPret(
     }
    return "redirect:/adherent/mes_prets" + adherentId;
 }
+
+ @PostMapping("/ajouter/prolongement")
+    public String enregistrerProlongement(
+            @RequestParam("pretId") Integer pretId,
+             @RequestParam("ProlongementDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate Dateprolongement,
+             org.springframework.web.servlet.mvc.support.RedirectAttributes redirectAttributes) {
+
+        Optional<Pret> pretOpt = pretRepository.findById(pretId);
+        if (pretOpt.isPresent()) {
+            Pret pret = pretOpt.get();
+
+                 // 1. Vérifier si l'exemplaire n'est pas réservé après ce prêt
+        boolean isReserved = reservationRepository.existsByExemplaireIdAndDateReservationAfter(
+                pret.getExemplaire().getId(), pret.getDatePret());
+        if (isReserved) {
+            redirectAttributes.addFlashAttribute("error", "Impossible de prolonger : le livre est réservé après votre prêt.");
+            return "redirect:/adherent/mes-prets";
+        }
+
+        // 2. Vérifier si l'abonnement est actif et payé
+        Adherent adherent = pret.getAdherent();
+        boolean abonnementActif = abonnementService.aUnAbonnementActif(adherent.getId());
+        if (!abonnementActif) {
+            redirectAttributes.addFlashAttribute("error", "Votre abonnement n'est pas actif ou n'est pas payé.");
+            return "redirect:/adherent/mes-prets";
+        }
+
+            Prolongement prolongement = new Prolongement();
+            pret.setDateRetour(null);
+            prolongement.setPret(pret);
+            prolongementRepository.save(prolongement);
+            pretRepository.save(pret);
+        }
+        return "redirect:/adherent/mes-prets";
+    }
 
 }

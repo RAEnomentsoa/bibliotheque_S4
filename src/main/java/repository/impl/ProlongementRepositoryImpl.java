@@ -2,6 +2,7 @@ package repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import model.Prolongement;
 import org.springframework.stereotype.Repository;
 import repository.ProlongementRepository;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional
 public class ProlongementRepositoryImpl implements ProlongementRepository {
 
     @PersistenceContext
