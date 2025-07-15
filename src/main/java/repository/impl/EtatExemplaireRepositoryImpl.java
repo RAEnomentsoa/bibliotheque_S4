@@ -2,6 +2,7 @@ package repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import model.EtatExemplaire;
 import org.springframework.stereotype.Repository;
 import repository.EtatExemplaireRepository;
@@ -42,5 +43,13 @@ public class EtatExemplaireRepositoryImpl implements EtatExemplaireRepository {
         if (etatExemplaire != null) {
             entityManager.remove(etatExemplaire);
         }
+    }
+
+       @Override
+    public EtatExemplaire findByLibelle(String libelle) {
+        String jpql = "SELECT e FROM EtatExemplaire e WHERE e.libelle = :libelle";
+        TypedQuery<EtatExemplaire> query = entityManager.createQuery(jpql, EtatExemplaire.class);
+        query.setParameter("libelle", libelle);
+        return query.getResultStream().findFirst().orElse(null);
     }
 }

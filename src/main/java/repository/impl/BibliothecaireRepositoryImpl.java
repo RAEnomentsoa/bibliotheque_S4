@@ -22,7 +22,7 @@ public class BibliothecaireRepositoryImpl implements BibliothecaireRepository {
     }
 
     @Override
-    public Optional<Bibliothecaire> findById(Long id) {
+    public Optional<Bibliothecaire> findById(int id) {
         Bibliothecaire bibliothecaire = entityManager.find(Bibliothecaire.class, id);
         return Optional.ofNullable(bibliothecaire);
     }

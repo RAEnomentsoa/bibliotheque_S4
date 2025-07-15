@@ -9,4 +9,5 @@ public interface EtatExemplaireRepository {
     Optional<EtatExemplaire> findById(Long id);
     EtatExemplaire save(EtatExemplaire etatExemplaire);
     void deleteById(Long id);
+    EtatExemplaire findByLibelle(String libelle);
 }

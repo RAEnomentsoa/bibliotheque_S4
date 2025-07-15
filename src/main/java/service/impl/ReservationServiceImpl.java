@@ -104,4 +104,13 @@ public boolean reserverExemplairePourAdherent(Integer exemplaireId, Adherent adh
     return true;
 }
 
+public String getNomAdherentParExemplaireId(int exemplaireId) {
+    Reservation reservation = reservationRepository.findFirstByExemplaireId(exemplaireId);
+    if (reservation != null && reservation.getAdherent() != null) {
+        Adherent adherent = reservation.getAdherent();
+        return adherent.getNom();
+    }
+    return "Non réservé";
+}
+
 }

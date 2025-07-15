@@ -21,7 +21,7 @@ public class PretServiceImpl implements PretService {
     }
 
     @Override
-    public Optional<Pret> findById(Long id) {
+    public Optional<Pret> findById(int id) {
         return pretRepository.findById(id);
     }
 

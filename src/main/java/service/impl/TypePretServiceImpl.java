@@ -21,7 +21,7 @@ public class TypePretServiceImpl implements TypePretService {
     }
 
     @Override
-    public Optional<TypePret> findById(Long id) {
+    public Optional<TypePret> findById(int id) {
         return typePretRepository.findById(id);
     }
 

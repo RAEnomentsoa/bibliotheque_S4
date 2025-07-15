@@ -22,7 +22,7 @@ public class AdherentRepositoryImpl implements AdherentRepository {
     }
 
     @Override
-    public Optional<Adherent> findById(Long id) {
+    public Optional<Adherent> findById(int id) {
         Adherent adherent = entityManager.find(Adherent.class, id);
         return Optional.ofNullable(adherent);
     }

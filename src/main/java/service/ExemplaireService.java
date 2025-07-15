@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface ExemplaireService {
     List<Exemplaire> findAll();
-    Optional<Exemplaire> findById(Long id);
+    Optional<Exemplaire> findById(int id);
     Exemplaire save(Exemplaire exemplaire);
     void deleteById(Long id);
     List<Exemplaire> findExemplairesDisponiblesByLivreId(Integer livreId);

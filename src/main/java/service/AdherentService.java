@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface AdherentService {
     List<Adherent> findAll();
-    Optional<Adherent> findById(Long id);
+    Optional<Adherent> findById(int id);
     Adherent save(Adherent adherent);
     void deleteById(Long id);
     Adherent findByEmailAndPassword(String email, String motDePasse);

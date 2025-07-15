@@ -12,5 +12,6 @@ public interface ReservationService {
     void deleteById(Long id);
     boolean reserverLivrePourAdherent(Integer livreId, Adherent adherent);
     boolean reserverExemplairePourAdherent(Integer exemplaireId, Adherent adherent);
+    String getNomAdherentParExemplaireId(int exemplaireId);
 
 }
