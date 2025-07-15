@@ -9,4 +9,6 @@ public interface AbonnementService {
     Optional<Abonnement> findById(Long id);
     Abonnement save(Abonnement abonnement);
     void deleteById(Long id);
+    boolean aUnAbonnementActif(Integer adherentId);
+
 }

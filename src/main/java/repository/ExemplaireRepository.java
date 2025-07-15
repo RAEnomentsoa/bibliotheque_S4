@@ -9,4 +9,6 @@ public interface ExemplaireRepository {
     Optional<Exemplaire> findById(Long id);
     Exemplaire save(Exemplaire exemplaire);
     void deleteById(Long id);
+    public List<Exemplaire> findExemplairesDisponiblesByLivreId(Integer livreId);
+
 }

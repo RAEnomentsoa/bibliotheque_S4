@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import repository.AbonnementRepository;
 import service.AbonnementService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,4 +35,12 @@ public class AbonnementServiceImpl implements AbonnementService {
     public void deleteById(Long id) {
         abonnementRepository.deleteById(id);
     }
+    @Override
+public boolean aUnAbonnementActif(Integer adherentId) {
+    Abonnement abonnement = abonnementRepository.findActifByAdherentId(adherentId);
+    if (abonnement == null) return false;
+    LocalDate today = LocalDate.now();
+    return !abonnement.getDateDebut().isAfter(today) && !abonnement.getDateFin().isBefore(today);
+}
+
 }

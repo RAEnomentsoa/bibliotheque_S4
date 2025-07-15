@@ -2,6 +2,7 @@ package repository.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import model.Adherent;
 import org.springframework.stereotype.Repository;
 import repository.AdherentRepository;
@@ -41,6 +42,19 @@ public class AdherentRepositoryImpl implements AdherentRepository {
         Adherent adherent = entityManager.find(Adherent.class, id);
         if (adherent != null) {
             entityManager.remove(adherent);
+        }
+    }
+
+     @Override
+    public Adherent findByEmailAndMotDePasse(String email, String motDePasse) {
+        try {
+            String jpql = "SELECT a FROM Adherent a WHERE a.email = :email AND a.motDePasse = :motDePasse";
+            TypedQuery<Adherent> query = entityManager.createQuery(jpql, Adherent.class);
+            query.setParameter("email", email);
+            query.setParameter("motDePasse", motDePasse);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            return null; // si aucun résultat trouvé
         }
     }
 }

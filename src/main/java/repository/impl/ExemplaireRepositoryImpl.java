@@ -43,4 +43,20 @@ public class ExemplaireRepositoryImpl implements ExemplaireRepository {
             entityManager.remove(exemplaire);
         }
     }
+
+    @Override
+public List<Exemplaire> findExemplairesDisponiblesByLivreId(Integer livreId) {
+  String jpql = """
+    SELECT e FROM Exemplaire e
+    WHERE e.livre.id = :livreId
+    AND NOT EXISTS (
+        SELECT s FROM StatutExemplaire s
+        WHERE s.exemplaire.id = e.id AND s.etatExemplaire.libelle <> 'libre'
+    )
+""";
+    return entityManager.createQuery(jpql, Exemplaire.class)
+                        .setParameter("livreId", livreId)
+                        .getResultList();
+}
+
 }

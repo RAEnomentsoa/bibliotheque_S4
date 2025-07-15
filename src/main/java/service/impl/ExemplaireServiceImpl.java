@@ -34,4 +34,9 @@ public class ExemplaireServiceImpl implements ExemplaireService {
     public void deleteById(Long id) {
         exemplaireRepository.deleteById(id);
     }
+        @Override
+    public List<Exemplaire> findExemplairesDisponiblesByLivreId(Integer livreId) {
+        return exemplaireRepository.findExemplairesDisponiblesByLivreId(livreId);
+    }
+
 }

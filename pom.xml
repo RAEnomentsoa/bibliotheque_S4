@@ -78,6 +78,13 @@
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>3.0.1</version>
         </dependency>
+
+        <dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.9.22</version> <!-- version recommandée pour 2024-2025 -->
+</dependency>
+
     </dependencies>
 
     <build>

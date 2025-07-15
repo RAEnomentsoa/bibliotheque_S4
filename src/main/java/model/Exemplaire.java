@@ -26,4 +26,13 @@ public class Exemplaire {
     public void setLivre(Livre livre) {
         this.livre = livre;
     }
+
+    public Exemplaire() {
+    //vide
+}
+
+
+    public Exemplaire(Integer id) {
+    this.id = id;
+}
 }
