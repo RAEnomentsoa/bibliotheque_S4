@@ -5,6 +5,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     </head>
 <body>
+<%@ include file="/WEB-INF/views/navbar_admin.jsp" %>
 <form action="${pageContext.request.contextPath}/bibliothecaires/prets/ajouter" method="post">
     <input type="hidden" name="adherentId" value="${adherentId}" />
     <input type="hidden" name="exemplaireId" value="${exemplaireId}" />

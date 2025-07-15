@@ -86,7 +86,7 @@
     </style>
 </head>
 <body>
-
+<%@ include file="/WEB-INF/views/navbar_admin.jsp" %>
     <h2>Liste des exemplaires en attente</h2>
 
     <c:if test="${not empty message}">

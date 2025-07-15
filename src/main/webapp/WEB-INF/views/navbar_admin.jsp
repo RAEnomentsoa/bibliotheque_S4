@@ -348,13 +348,13 @@
 
             <!-- Navigation Links -->
             <ul class="nav-links" id="navLinks">
-                <li><a href="#" class="nav-link"> Home</a></li>
+                <li><a href="#" class="nav-link"> Dashboard</a></li>
                 <li class="dropdown">
-                    <a href="#" class="nav-link"> Client-biblio </a>
+                    <a href="#" class="nav-link"> Admin-biblio </a>
                     <div class="dropdown-content">
-                        <a href="${pageContext.request.contextPath}/adherent/livres" class="dropdown-link"> liste livre</a>
-                        <a href="#" class="dropdown-link"> Abonnement</a>
-                        <a href="${pageContext.request.contextPath}/adherent/mes-prets" class="dropdown-link"> Mes prets</a>
+                        <a href="${pageContext.request.contextPath}/bibliothecaires/exemplaires-reserves" class="dropdown-link"> reserve & pret</a>
+                        <a href="${pageContext.request.contextPath}/bibliothecaires/abonnement/new" class="dropdown-link"> Abonnement</a>
+                        <a href="${pageContext.request.contextPath}/bibliothecaires/" class="dropdown-link"> prolomgement</a>
     
                     </div>
                 </li>
@@ -373,8 +373,8 @@
                 <!-- Notification Bell -->
                 <%-- <div class="notification-badge">
                     <span style="font-size: 1.2rem;"></span>
-                </div>
-                 --%>
+                </div> --%>
+                
                 <!-- Action Buttons -->
                 <!-- <a href="#" class="btn btn-secondary">Login</a>
                 <a href="#" class="btn btn-primary">Get Started</a>
